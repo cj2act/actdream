@@ -17,7 +17,6 @@
 ## 一、Netty
 ## 二、SpringMVC
 ## 三、Spring
-### 1. IOC
 ## 四、ORM
 ## 五、SpringBoot
 # 架构篇
