@@ -1,9 +1,6 @@
 #忽略全部内容
 /*
 #下述文件除外
-!.gitignore
-!pom.xml
-!README.md
-!/src/
+.gitignore
 .DS_Store
 .DS_Store?
