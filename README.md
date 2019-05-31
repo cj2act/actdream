@@ -1,18 +1,14 @@
 ### 计算机基础篇
 #### 一、网络
-##### 1.TCP
-##### 2.UDP
-##### 3.Http
-##### 4.Https
-##### 5.Mqtt
 #### 二、操作系统
 #### 三、数据结构与算法
 #### 四、数据库
+##### [1.浅谈Mysql中的索引机制](./articles/cs/db/index-1.md)
 ### Java基础篇
 #### 一、集合
 #### 二、NIO
-##### 1.[浅谈NIO中的zero-copy](./java/nio/nio-reactor.md)
-##### 2.浅谈NIO中的Reactor设计模式应用
+##### [1.浅谈NIO中的zero-copy](./articles/java/nio/nio-zerocopy.md)
+##### [2.浅谈NIO中的Reactor设计模式应用](./articles/java/nio/nio-reactor.md)
 #### 三、并发编程
 #### 四、JVM
 ### 框架篇
@@ -31,4 +27,5 @@
 ### 运维篇
 #### 一、Jenkins
 #### 二、Docker
+##### [1.浅谈Docker-Compose部署SpringCloud](./articles/ops/docker/docker-compose-ops-sc-1.md)
 #### 三、Kubernetes
