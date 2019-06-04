@@ -21,11 +21,11 @@ EventLoopGroup childEventLoopGroup = new NioEventLoopGroup();
 2. `NioEventLoop`：通过名称就可以看出来，它便是事件轮询组中的一个轮询，也就是一个`subReactor`或者`acceptor`（通常做法在创建接收连接的轮询组时都是创建一个）。
 3. `ChannelPipeline`：文档中的解释是"it handles or intercepts inbound events and outbound operations of a implements an advanced form of the <a href="http://www.oracle.com/technetwork/java/interceptingfilter-142169.html">Intercepting Filter</a> pattern"，翻译过来就是它处理或者是拦截入栈事件和出栈的一些操作，实现了一种更加高级的拦截过滤器模式。过滤器模式是入出走同一个过滤器，而对于`ChannelPipeline`入栈处理和出栈处理分离开了，`ChannelPipeline`
 底层维护着一个`ChannelHandlerContext`双向链表。`ChannelPipeline`的处理流程如下：
-![](https://user-gold-cdn.xitu.io/2019/6/3/16b1b7aa0b6042d3)
+![](https://user-gold-cdn.xitu.io/2019/6/4/16b209716958b3f1?w=762&h=578&f=png&s=53444)
 从`Channel`里读出来的数据，需要经过与`Channel`绑定的`ChannelPipeline`中的`InboundHandler`处理，再注册写事件。写出的时候需要经`ChannelPipeline`中的`OutboundHandler`处理在写回给客户端。
-4. `ChannelHandlerContext`：`ChannelPipeline`中是`ChannelHandlerContext`双向链表，它起到一个承上启下的作用，意思是能够向上获取到`ChannelPipeline`和`Channel`，又能向下获取到`ChannelHandler`。
-5. `ChannelInboundHandlerAdapter`/`ChannelOutboundHandlerAdapter`：入栈出栈的处理器对象，它应用适配器设计模式，后续文章中我们在从细节分析。
-6. `ServerBootStrapAcceptor`：`Netty`中`acceptor`对象，用于将`EventLoop`中`Selector`接收到的`Channel`（这里面其实与`selectionKey`绑定的是`serverChannel`然后再通过`serverChannel.accept()`得到的），将`Channel`注册给`ChildEventLoop`（这块`Netty`是通过`round-robin`去获取`EventLoop`）中个其中一个`Selector`上。
+1. `ChannelHandlerContext`：`ChannelPipeline`中是`ChannelHandlerContext`双向链表，它起到一个承上启下的作用，意思是能够向上获取到`ChannelPipeline`和`Channel`，又能向下获取到`ChannelHandler`。
+2. `ChannelInboundHandlerAdapter`/`ChannelOutboundHandlerAdapter`：入栈出栈的处理器对象，它应用适配器设计模式，后续文章中我们在从细节分析。
+3. `ServerBootStrapAcceptor`：`Netty`中`acceptor`对象，用于将`EventLoop`中`Selector`接收到的`Channel`（这里面其实与`selectionKey`绑定的是`serverChannel`然后再通过`serverChannel.accept()`得到的），将`Channel`注册给`ChildEventLoop`（这块`Netty`是通过`round-robin`去获取`EventLoop`）中个其中一个`Selector`上。
 
 
 
