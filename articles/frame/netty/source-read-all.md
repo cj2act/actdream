@@ -21,7 +21,7 @@ EventLoopGroup childEventLoopGroup = new NioEventLoopGroup();
 2. `NioEventLoop`：通过名称就可以看出来，它便是事件轮询组中的一个轮询，也就是一个`subReactor`或者`acceptor`（通常做法在创建接收连接的轮询组时都是创建一个）。
 3. `ChannelPipeline`：文档中的解释是"it handles or intercepts inbound events and outbound operations of a implements an advanced form of the <a href="http://www.oracle.com/technetwork/java/interceptingfilter-142169.html">Intercepting Filter</a> pattern"，翻译过来就是它处理或者是拦截入栈事件和出栈的一些操作，实现了一种更加高级的拦截过滤器模式。过滤器模式是入出走同一个过滤器，而对于`ChannelPipeline`入栈处理和出栈处理分离开了，`ChannelPipeline`
 底层维护着一个`ChannelHandlerContext`双向链表。`ChannelPipeline`的处理流程如下：
-![](https://user-gold-cdn.xitu.io/2019/6/4/16b209716958b3f1?w=762&h=578&f=png&s=53444)
+![](https://user-gold-cdn.xitu.io/2019/6/4/16b209a8d91c77f3?w=937&h=578&f=png&s=58213)
 从`Channel`里读出来的数据，需要经过与`Channel`绑定的`ChannelPipeline`中的`InboundHandler`处理，再注册写事件。写出的时候需要经`ChannelPipeline`中的`OutboundHandler`处理在写回给客户端。
 1. `ChannelHandlerContext`：`ChannelPipeline`中是`ChannelHandlerContext`双向链表，它起到一个承上启下的作用，意思是能够向上获取到`ChannelPipeline`和`Channel`，又能向下获取到`ChannelHandler`。
 2. `ChannelInboundHandlerAdapter`/`ChannelOutboundHandlerAdapter`：入栈出栈的处理器对象，它应用适配器设计模式，后续文章中我们在从细节分析。
