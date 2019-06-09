@@ -1,4 +1,4 @@
-## pipeline
+## ChannelPipeline原理解读
 > Netty中另外两个重要组件—— ChannelHandle,ChannelHandleContext,Pipeline。Netty中I/O事件的传播机制以及数据的过滤和写出均由它们负责。
 ### pipeline的初始化
 #### 步骤
