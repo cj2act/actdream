@@ -1,0 +1,24 @@
+## Netty两大性能优化工具
+### FastThreadLocal
+- 创建
+- get方法的实现
+  - 获取ThreadLocalMap
+  - 直接通过索引取出对象
+  - 初始化
+- set方法的实现
+  - 获取ThreadLocalMap
+  - 直接通过索引set独享
+  - remove对象
+### Recycler
+- Recycler的创建
+- 从Recycler获取对象
+  - 获取当前线程的Stack
+  - 从Stack里面弹出对象
+  - 创建对象并绑定到Stack
+- 回收对象到Recyler
+  - 同线程回收对象
+    - 
+  - 异线程回收对象
+    - 获取WeakOrderQueue
+    - 创建WeakOrderQueue
+  - 异线程收割对象

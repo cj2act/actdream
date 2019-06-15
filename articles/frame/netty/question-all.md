@@ -14,3 +14,39 @@
 - 解码器抽象的解码过程是什么样的？
 - Netty里面有哪些拆箱即用的解码器？
 - 如何把对象变成字节流，最终写到Socket底层？
+
+- 策略模式
+  - 封装一系列可相互替换的算法家族
+  - 动态选择某一个策略
+  - Netty中应用的类
+    - EventExecutorChooserFactory#newChooser(EventExecutor[])
+- 装饰者模式
+  - 装饰者和被装饰者继承同一个接口
+  - 装饰者给被装饰者动态修改行为
+  - Netty中应用的类
+    - WrappedByteBuf
+- 观察者模式
+  - 观察者和被观察者
+  - 观察者订阅消息，被观察者发布消息
+  - 订阅则能收到，取消订阅则收不到
+  - Netty中应用的类
+    - writeAndFlush ChannelFuture#addListener(Promise模式)
+- 迭代器模式
+  - 迭代器接口
+  - 对容器里面各个对象进行访问
+  - Netty中应用的类
+    - forEachByte
+- 责任链模式
+  - 责任处理器接口
+  - 创建链，添加删除责任处理器接口
+  - 上下文
+  - 责任终止机制
+  - Netty中应用的类
+    - ChannelPipeline
+      - 责任处理器接口：ChannelHandler
+      - 链：ChaneelPipeline
+      - 上下文：ChannelHandlerContext
+      - 责任终止机制：不调用fireXX
+- 适配器模式
+- 命令模式
+- 工厂模式
