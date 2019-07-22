@@ -4,6 +4,7 @@
 #### 三、数据结构与算法
 #### 四、数据库
 ##### [1.浅谈Mysql中的索引机制](./articles/cs/db/index-1.md)
+##### [2.浅谈Mysql中的锁机制](./articles/cs/db/lock.md)
 ### Java基础篇
 #### 一、集合
 #### 二、NIO
