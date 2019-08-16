@@ -158,4 +158,23 @@
   - 运行状态：得到cpu执行权。
   - 休眠状态：运行状态的线程，调用了一个阻塞api或者等待某个事件（例如管程模型中提到的条件变量），就会进入休眠状态。
   - 终止状态：线程执行完，或者出现异常就会进入终止状态。
- 
+- Java中的线程生命周期
+![](https://user-gold-cdn.xitu.io/2019/8/16/16c99c3b6e66033f?w=1492&h=848&f=png&s=98126)
+- RUNNABLE -> BLOCKED : 线程等待synchronize的隐式锁。
+   注： 调用阻塞API时候，并不会切换到BLOCKED。
+- RUNNABLE -> WAITING : 
+    - 获得synchronize隐式锁的线程，调用无参数的Object.wait()。
+    - 调用无参的Thread.join方法。其中的 join() 是一种线程同步方法，例如有一个线程对象 thread A，当调用 A.join() 的时候，执行这条语句的线程会等待 thread A 执行完，而等待中的这个线程，其状态会从 RUNNABLE 转换到 WAITING。当线程 thread A 执行完，原来等待它的线程又会从 WAITING 状态转换到 RUNNABLE。
+    - 调用 LockSupport.park() 方法。其中的 LockSupport 对象，也许你有点陌生，其实 Java 并发包中的锁，都是基于它实现的。调用 LockSupport.park() 方法，当前线程会阻塞，线程的状态会从 RUNNABLE 转换到 WAITING。调用 LockSupport.unpark(Thread thread) 可唤醒目标线程，目标线程的状态又会从 WAITING 状态转换到 RUNNABLE。
+- RUNNABLE -> TIMED_WAITING
+    - 调用带有超时参数的Thread.sleep(long millis)方法；
+    - 获取synchronized隐式锁的线程，调用带有超时参数的Object.wait(long timeout)方法；
+    - 调用带超时参数的Thread.join(long millis)方法；
+    - 调用带超时参数的LockSupport.parkNanos(Object blocker,long deadline)方法；
+    - 调用带超时参数的LockSupport.parkUntil(long deadline)方法。
+    TIMED_WAITING与WAITING状态的区别，仅仅是触发条件多了超时条件。
+- NEW -> RUNNABLE状态：t.start();
+- 从RUNNABLE到TERMINATED状态
+    - interrupt()：当线程 A 处于 WAITING、TIMED_WAITING 状态时，如果其他线程调用线程 A 的 interrupt() 方法，会使线程 A 返回到 RUNNABLE 状态，同时线程 A 的代码会触发 InterruptedException 异常。上面我们提到转换到 WAITING、TIMED_WAITING 状态的触发条件，都是调用了类似 wait()、join()、sleep() 这样的方法，我们看这些方法的签名，发现都会 throws InterruptedException 这个异常。这个异常的触发条件就是：其他线程调用了该线程的 interrupt() 方法。
+    - 例如中断计算圆周率的线程 A，这时就得依赖线程 A 主动检测中断状态了。如果其他线程调用线程 A 的 interrupt() 方法，那么线程 A 可以通过 isInterrupted() 方法，检测是不是自己被中断了。
+  stop()过期原因：stop() 方法会真的杀死线程，不给线程喘息的机会，如果线程持有 ReentrantLock 锁，被 stop() 的线程并不会自动调用 ReentrantLock 的 unlock() 去释放锁，那其他线程就再也没机会获得 ReentrantLock 锁，这实在是太危险了。
