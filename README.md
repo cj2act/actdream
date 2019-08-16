@@ -11,6 +11,7 @@
 ##### [1.浅谈NIO中的zero-copy](./articles/java/nio/nio-zerocopy.md)
 ##### [2.浅谈NIO中的Reactor设计模式应用](./articles/java/nio/nio-reactor.md)
 #### 三、并发编程
+##### [1.并发编程中的基础知识](./articles/concurrent/base.md)
 #### 四、JVM
 ### 框架篇
 #### 一、Netty
