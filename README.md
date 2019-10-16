@@ -1,7 +1,3 @@
-<div align="center">
-<img src="https://user-gold-cdn.xitu.io/2019/10/16/16dd48b3f0d182d9?w=400&h=533&f=jpeg&s=15611" width="300px" height="300px"/>
-</div>
-
 ### 计算机基础篇
 #### 一、网络
 #### 二、操作系统
