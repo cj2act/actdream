@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://user-gold-cdn.xitu.io/2019/10/16/16dd4873f0e8ef17?w=959&h=959&f=jpeg&s=109031" width=""/>
+<img src="https://user-gold-cdn.xitu.io/2019/10/16/16dd4873f0e8ef17?w=959&h=959&f=jpeg&s=109031" width="300px" height="300px"/>
 </div>
 
 ### 计算机基础篇
