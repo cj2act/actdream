@@ -1,3 +1,14 @@
+<img src="https://ws1.sinaimg.cn/large/0069RVTdly1fubocn5pxaj30go082dg1.jpg" width=""/> 
+<br/>
+
+[![Build Status](https://travis-ci.org/crossoverJie/JCSprout.svg?branch=master)](https://travis-ci.org/crossoverJie/JCSprout)
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-787381170-yellowgreen.svg)](https://jq.qq.com/?_wv=1027&k=5HPYvQk)
+
+[qq0groupsvg]: https://img.shields.io/badge/QQ%E7%BE%A4-787381170-yellowgreen.svg
+[qq0group]: https://jq.qq.com/?_wv=1027&k=5HPYvQk
+
+</div><br>
+
 ### 计算机基础篇
 #### 一、网络
 #### 二、操作系统
